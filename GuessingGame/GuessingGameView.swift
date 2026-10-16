@@ -55,7 +55,7 @@ struct GuessingGameView: View {
 
             // The title at the top of the screen.
             HStack {
-                Image(systemName: "sparkle.magnifyingglass")
+                Image(systemName: "lightbulb")
                 Text("Guessing Game")
             }
             .font(.largeTitle)
@@ -126,10 +126,15 @@ struct GuessingGameView: View {
                 }
                 .buttonStyle(.borderedProminent)
             }
-
-            Text("Guesses so far: \(guessCount)")
-                .font(.headline)
-                .foregroundStyle(Color.secondary)
+            
+            HStack {
+                Image(systemName: "dice.fill")
+                Text("Guesses so far: \(guessCount)")
+            }
+            .font(.headline)
+            .foregroundStyle(Color.secondary)
+            
+            
         }
         .padding(32)
         .font(.title2)
@@ -161,7 +166,7 @@ struct GuessingGameView: View {
             } else {
                 message = "\(guess) is not my number. Try again."
             }
-            messageSymbol = "xmark.circle.fill"
+            messageSymbol = "person.fill.xmark"
             messageColor = Color.orange
         }
     }
