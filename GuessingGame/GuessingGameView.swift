@@ -22,6 +22,9 @@ import SwiftUI
 let lowestNumber: Int = 1
 let highestNumber: Int = 100
 
+// What the game calls the player.
+let playerName: String = "Charlotte"
+
 // The game itself: what it remembers, what it shows on the screen,
 // and what it does when you click a button.
 struct GuessingGameView: View {
@@ -47,6 +50,10 @@ struct GuessingGameView: View {
 
     // Becomes true when the player finds the secret number.
     @State var gameIsOver: Bool = false
+    
+    // How many games the player has won since the app started.
+    @State var gamesWon: Int = 0
+    
 
     // MARK: - Computed properties
 
@@ -155,10 +162,11 @@ struct GuessingGameView: View {
         guessCount += 1
 
         if guess == secretNumber {
-            message = "Yes! \(secretNumber) is my number."
+            message = "Yes, \(playerName)! \(secretNumber) is my number."
             messageSymbol = "star.circle.fill"
             messageColor = Color.green
             gameIsOver = true
+            gamesWon += 1
         } else {
             // TRY: Change this message. Make it kinder, or sillier.
             if guessCount > 5 {
