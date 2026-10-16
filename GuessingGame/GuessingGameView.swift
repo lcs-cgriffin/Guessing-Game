@@ -10,8 +10,8 @@
 //  you can play again.
 //
 //  WHAT IT DOES NOT DO YET
-//  It does not tell you if your guess is too high or too low.
-//  That part is up to you.
+// //  NEW IN LESSON 3
+//  It tells you if your guess is too high or too low.
 //
 
 import SwiftUI
@@ -157,10 +157,10 @@ struct GuessingGameView: View {
 
     // Checks the player's guess against the secret number.
     func checkGuess() {
-
+ 
         // One more guess has been made.
         guessCount += 1
-
+ 
         if guess == secretNumber {
             message = "Yes, \(playerName)! \(secretNumber) is my number."
             messageSymbol = "star.circle.fill"
@@ -168,14 +168,15 @@ struct GuessingGameView: View {
             gameIsOver = true
             gamesWon += 1
         } else {
-            // TRY: Change this message. Make it kinder, or sillier.
-            if guessCount > 5 {
-                message = "\(guess) is not it either. Keep going!"
+            if guess < secretNumber {
+                message = "\(guess) is too low. Go higher."
+                messageSymbol = "arrow.up.circle.fill"
+                messageColor = Color.blue
             } else {
-                message = "\(guess) is not my number. Try again."
+                message = "\(guess) is too high. Go lower."
+                messageSymbol = "arrow.down.circle.fill"
+                messageColor = Color.red
             }
-            messageSymbol = "person.fill.xmark"
-            messageColor = Color.orange
         }
     }
 
