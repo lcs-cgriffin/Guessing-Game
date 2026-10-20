@@ -25,6 +25,9 @@ let highestNumber: Int = 100
 // What the game calls the player.
 let playerName: String = "Charlotte"
 
+// How many guesses the player gets before the game is over.
+let maximumGuesses: Int = 7
+
 // The game itself: what it remembers, what it shows on the screen,
 // and what it does when you click a button.
 struct GuessingGameView: View {
@@ -133,6 +136,7 @@ struct GuessingGameView: View {
                 }
                 .buttonStyle(.borderedProminent)
             }
+            Text("Guesses: \(guessCount) of \(maximumGuesses)    Games won: \(gamesWon)")
             
             HStack {
                 Image(systemName: "dice.fill")
@@ -177,6 +181,13 @@ struct GuessingGameView: View {
                 messageSymbol = "arrow.down.circle.fill"
                 messageColor = Color.red
             }
+        }
+        // Out of guesses, and still not right? Then the game is over.
+        if guess != secretNumber && guessCount >= maximumGuesses {
+            message = "Out of guesses! My number was \(secretNumber)."
+            messageSymbol = "xmark.octagon.fill"
+            messageColor = Color.gray
+            gameIsOver = true
         }
     }
 
